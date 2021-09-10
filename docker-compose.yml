@@ -1,0 +1,26 @@
+version: '2.1'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - 15672:15672
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "10"
+  consumer:
+    build: consumer
+    ports:
+      - 8081:8081
+  provider:
+    build: provider
+    ports:
+      - 8082:8082
+
+#  provider:
+#    container_name: provider
+#    restart: always
+#    build:
+#      dockerfile: provider/Dockerfile
+
